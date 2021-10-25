@@ -48,6 +48,7 @@ class App extends React.Component {
            <ListForm />
          </div>
         <GroceryList groceries={groceries} />
+        <button className="clear-btn">Clear Purchased</button>
        </div>
     );
   }
