@@ -78,7 +78,10 @@ class App extends React.Component {
            <h1>Shopping List</h1>
            <ListForm />
          </div>
-        <GroceryList groceries={this.state.groceries} />
+        <GroceryList 
+              groceries={this.state.groceries} 
+              toggleItem={this.toggleItem}
+              />
         <button className="clear-btn">Clear Purchased</button>
        </div>
     );
