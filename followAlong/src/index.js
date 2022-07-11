@@ -40,6 +40,7 @@ const groceries = [
 
 class App extends React.Component {
   // Class methods to update state
+  
   render() {
     return (
       <div className="App">
