@@ -51,7 +51,9 @@ class App extends React.Component {
   //useState 
 
   //this.setState()
-
+  // toggleItem() {
+  //   //...
+  // }
   toggleItem = (itemId) => {
     // get itemId from <Item /> clicked on. 
     // map over array of groceries
@@ -71,18 +73,42 @@ class App extends React.Component {
     })
   }
 
+  addItem = (itemText) => {
+    //create the new item object
+    //add it to the groceries array => new array
+    //setState to the new groceries array.
+    const newItem = {
+      name: itemText,
+      id: Date.now(),
+      purchased: false
+    }
+
+    const newGroceries = [...this.state.groceries, newItem]
+
+    this.setState({
+      groceries: newGroceries
+    })
+  }
+
+  clearPurchased = () => {
+    // if item is purchased (item.purchased is true) the filter out the item
+    this.setState({
+      groceries: this.state.groceries.filter(item => !item.purchased)
+    })
+  }
+
   render() {
     return (
       <div className="App">
         <div className="header">
            <h1>Shopping List</h1>
-           <ListForm />
+           <ListForm addItem={this.addItem}/>
          </div>
         <GroceryList 
               groceries={this.state.groceries} 
               toggleItem={this.toggleItem}
+              clearPurchased={this.clearPurchased}
               />
-        <button className="clear-btn">Clear Purchased</button>
        </div>
     );
   }
