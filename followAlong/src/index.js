@@ -40,7 +40,37 @@ const groceries = [
 
 class App extends React.Component {
   // Class methods to update state
-  
+  constructor() {
+    super()
+    this.state = {
+      groceries: groceries
+    }
+  }
+
+  //this
+  //useState 
+
+  //this.setState()
+
+  toggleItem = (itemId) => {
+    // get itemId from <Item /> clicked on. 
+    // map over array of groceries
+    // when we find the item we clicked on, toggle the purchased field
+    // otherwise return the item untouched
+
+    this.setState({
+      groceries: this.state.groceries.map(item => {
+        if (itemId === item.id) {
+          return {
+            ...item,
+            purchased: !item.purchased
+          }
+        }
+        return item;
+      })
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -48,7 +78,7 @@ class App extends React.Component {
            <h1>Shopping List</h1>
            <ListForm />
          </div>
-        <GroceryList groceries={groceries} />
+        <GroceryList groceries={this.state.groceries} />
         <button className="clear-btn">Clear Purchased</button>
        </div>
     );
